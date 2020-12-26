@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User implements Serializable{
@@ -15,8 +19,19 @@ public class User implements Serializable{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @NotBlank(message = "Name cannot be blank")
+  @Size(min = 3, message = "Name must be more than 3 characters")
   private String name;
+
+  @NotBlank(message = "Email cannot be blank")
+  @Email(message = "Invalid value: The email must be in pattern: exemple@exemple.com")
   private String email;
+
+  @NotBlank(message = "Phone cannot be blank")
+  @Pattern(
+    regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})",
+    message = "Invalid value: The phone number must be in pattern: (12) 12345-1234 or (12) 1234-1234")
   private String phone;
 
   public User(Long id, String name, String email, String phone) {
