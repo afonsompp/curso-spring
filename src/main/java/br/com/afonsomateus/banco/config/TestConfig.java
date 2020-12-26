@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import br.com.afonsomateus.banco.entities.Order;
 import br.com.afonsomateus.banco.entities.User;
+import br.com.afonsomateus.banco.entities.enums.OrderStatus;
 import br.com.afonsomateus.banco.repositories.OrderRepository;
 import br.com.afonsomateus.banco.repositories.UserRepository;
 
@@ -27,9 +28,9 @@ public class TestConfig implements CommandLineRunner {
     User u1 = new User(null, "Maria Brown", "maria@gmail.com", "(69) 99355-1645");
     User u2 = new User(null, "Alex Green", "alex@gmail.com", "(69) 9345-1685");
 
-    Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-    Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2);
-    Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), u1);
+    Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
+    Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.DELIVERED, u2);
+    Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.SHIPPED, u1);
 
     userRepository.saveAll(Arrays.asList(u1, u2));
     orderRepository.saveAll(Arrays.asList(o1, o2, o3));
