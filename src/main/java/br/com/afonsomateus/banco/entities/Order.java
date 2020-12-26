@@ -10,10 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import br.com.afonsomateus.banco.entities.enums.OrderStatus;
 
 @Entity
 @Table(name = "tb_order")
@@ -28,6 +32,11 @@ public class Order {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "GMT")
   private Instant moment;
 
+  @NotNull
+  @Max(value = 5)
+  @Min(value = 1)
+  private Integer orderStatus;
+
   @ManyToOne()
   @JoinColumn(name = "user_id")
   private User user;
@@ -35,9 +44,10 @@ public class Order {
   public Order() {
   }
 
-  public Order(Long id, Instant moment, User user) {
+  public Order(Long id, Instant moment, OrderStatus orderStatus, User user) {
     this.id = id;
     this.moment = moment;
+    this.orderStatus = orderStatus.getCode();
     this.user = user;
   }
 
