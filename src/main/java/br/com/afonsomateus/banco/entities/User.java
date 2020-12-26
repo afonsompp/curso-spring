@@ -1,6 +1,8 @@
 package br.com.afonsomateus.banco.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -11,6 +13,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User implements Serializable{
@@ -33,6 +37,10 @@ public class User implements Serializable{
     regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})",
     message = "Invalid value: The phone number must be in pattern: (12) 12345-1234 or (12) 1234-1234")
   private String phone;
+
+  @OneToMany(mappedBy = "user")
+  @JsonIgnore
+	private List<Order> orders = new ArrayList<>();
 
   public User(Long id, String name, String email, String phone) {
     this.id = id;
@@ -74,6 +82,10 @@ public class User implements Serializable{
 
   public void setPhone(String phone) {
     this.phone = phone;
+  }
+
+  public List<Order> getOrders() {
+    return this.orders;
   }
 
   @Override
