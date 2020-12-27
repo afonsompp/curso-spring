@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import br.com.afonsomateus.banco.entities.Category;
 import br.com.afonsomateus.banco.entities.Order;
 import br.com.afonsomateus.banco.entities.OrderItem;
+import br.com.afonsomateus.banco.entities.Payment;
 import br.com.afonsomateus.banco.entities.Product;
 import br.com.afonsomateus.banco.entities.User;
 import br.com.afonsomateus.banco.entities.enums.OrderStatus;
@@ -72,5 +73,9 @@ public class TestConfig implements CommandLineRunner {
     categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
     productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
     orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+    Payment pay1 = new Payment(null, Instant.parse("2019-06-20T19:53:07Z"), o1);
+    o1.setPayment(pay1);
+    orderRepository.save(o1);
   }
 }
