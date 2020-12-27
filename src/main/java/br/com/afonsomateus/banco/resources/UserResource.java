@@ -3,6 +3,8 @@ package br.com.afonsomateus.banco.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,7 +40,7 @@ public class UserResource {
   }
 
   @PostMapping
-	public ResponseEntity<User> insert(@RequestBody User user) {
+	public ResponseEntity<User> insert(@Valid @RequestBody User user) {
     userService.insert(user);
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
     return ResponseEntity.created(uri).body(user);
@@ -50,7 +52,7 @@ public class UserResource {
     return ResponseEntity.noContent().build();
   }
   @PutMapping(value = "/{id}")
-	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+	public ResponseEntity<User> update(@PathVariable Long id, @Valid @RequestBody User user) {
     user = userService.update(id, user);
     return ResponseEntity.ok().body(user);
   }
