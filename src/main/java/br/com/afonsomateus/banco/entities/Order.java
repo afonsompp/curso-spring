@@ -32,13 +32,14 @@ public class Order {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "GMT")
   private Instant moment;
 
-  @NotNull
-  @Max(value = 5)
-  @Min(value = 1)
+  @NotNull(message = "OrderStatus cannot be null")
+  @Max(value = 5, message = "value out range, valid values between 1 and 5")
+  @Min(value = 1, message = "value out range, valid values between 1 and 5")
   private Integer orderStatus;
 
   @ManyToOne()
   @JoinColumn(name = "user_id")
+  @NotNull(message = "User cannot be null")
   private User user;
 
   public Order() {
