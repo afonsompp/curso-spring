@@ -33,7 +33,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
   }
 
   private Predicate<RequestHandler> apis() {
-    return RequestHandlerSelectors.basePackage("br.com.afonsomateus.banco");
+    return RequestHandlerSelectors.basePackage("br.com.afonsomateus.loja");
   }
 
   private ApiInfo apiInfo() {
