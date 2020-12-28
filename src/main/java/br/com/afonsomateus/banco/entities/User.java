@@ -18,6 +18,8 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable{
@@ -54,7 +56,7 @@ public class User implements Serializable{
 
   public User() {
   }
-
+  @ApiModelProperty(notes = "Identificador do usuário", example = "1", position = 0)
   public Long getId() {
     return this.id;
   }
@@ -62,7 +64,7 @@ public class User implements Serializable{
   public void setId(Long id) {
     this.id = id;
   }
-
+  @ApiModelProperty(notes = "Nome do usuário", required = true, example = "Afonso Mateus", position = 1)
   public String getName() {
     return this.name;
   }
@@ -71,6 +73,7 @@ public class User implements Serializable{
     this.name = name;
   }
 
+  @ApiModelProperty(notes = "Email do usuário", required = true, example = "afonsoprad10@gmail.com", position = 2)
   public String getEmail() {
     return this.email;
   }
@@ -79,6 +82,7 @@ public class User implements Serializable{
     this.email = email;
   }
 
+  @ApiModelProperty(notes = "Número de telefone do usuário.", required = true, example = "(69) 99355-1645", position = 3)
   public String getPhone() {
     return this.phone;
   }
