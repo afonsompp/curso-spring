@@ -33,9 +33,10 @@ public class UserService {
     return repository.save(user);
   }
 
-  public void deleteById(Long id) {
+  public boolean deleteById(Long id) {
     try {
       repository.deleteById(id);
+      return true;
     } catch (EmptyResultDataAccessException e) {
       throw new ResourceNotFoundException(id);
     } catch (DataIntegrityViolationException e){
