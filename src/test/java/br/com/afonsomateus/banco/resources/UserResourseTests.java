@@ -24,10 +24,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import br.com.afonsomateus.banco.entities.User;
-import br.com.afonsomateus.banco.errors.genericExceptions.exceptions.DatabaseException;
-import br.com.afonsomateus.banco.errors.genericExceptions.exceptions.ResourceNotFoundException;
-import br.com.afonsomateus.banco.services.UserService;
+import br.com.afonsomateus.loja.entities.User;
+import br.com.afonsomateus.loja.errors.genericExceptions.exceptions.DatabaseException;
+import br.com.afonsomateus.loja.errors.genericExceptions.exceptions.ResourceNotFoundException;
+import br.com.afonsomateus.loja.resources.UserResource;
+import br.com.afonsomateus.loja.services.UserService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
