@@ -20,27 +20,36 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "tb_user")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User implements Serializable{
 
   private static final long serialVersionUID = 1L;
+
+  @ApiModelProperty(notes = "Identificador do usuário", example = "1", position = 0)
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "Name cannot be blank")
-  @Size(min = 3, message = "Name must be more than 3 characters")
+  @NotBlank()
+  @Size(min = 3)
   private String name;
 
-  @NotBlank(message = "Email cannot be blank")
-  @Email(message = "Invalid value: The email must be in pattern: exemple@exemple.com")
+  @ApiModelProperty(notes = "Email do usuário", required = true, example = "afonsoprad10@gmail.com", position = 2)
+  @NotBlank
+  @Email
   private String email;
 
-  @NotBlank(message = "Phone cannot be blank")
-  @Pattern(
-    regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})",
-    message = "Invalid value: The phone number must be in pattern: (12) 12345-1234 or (12) 1234-1234")
+  @ApiModelProperty(notes = "Número de telefone do usuário.", required = true, example = "(69) 99355-1645", position = 3)
+  @NotBlank
+  @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})")
   private String phone;
 
   @OneToMany(mappedBy = "user")
@@ -52,47 +61,6 @@ public class User implements Serializable{
     this.name = name;
     this.email = email;
     this.phone = phone;
-  }
-
-  public User() {
-  }
-  @ApiModelProperty(notes = "Identificador do usuário", example = "1", position = 0)
-  public Long getId() {
-    return this.id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-  @ApiModelProperty(notes = "Nome do usuário", required = true, example = "Afonso Mateus", position = 1)
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  @ApiModelProperty(notes = "Email do usuário", required = true, example = "afonsoprad10@gmail.com", position = 2)
-  public String getEmail() {
-    return this.email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  @ApiModelProperty(notes = "Número de telefone do usuário.", required = true, example = "(69) 99355-1645", position = 3)
-  public String getPhone() {
-    return this.phone;
-  }
-
-  public void setPhone(String phone) {
-    this.phone = phone;
-  }
-
-  public List<Order> getOrders() {
-    return this.orders;
   }
 
   @Override
