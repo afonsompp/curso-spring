@@ -45,6 +45,4 @@ Já sabemos quais são os campos que nós temos que ter para cadastrar, mas quai
 
 #### Como ficaria o diagrama UML?
 Como podemos ver acima, todos os campos acima representam de características uma pessoa, que no nosso contexto é um **==cliente==** do banco. Com isso em mente podemos chegar a conclusão que o cliente é uma ==classe== do nosso projeto. Então o a representação da classe Cliente ficaria da seguinte forma:
-<p align="center">
-	<img src="https://user-	images.githubusercontent.com/48936532/103358091-2fee7b80-4a8b-11eb-911c-98c4101093ec.jpg"/> 
-  </p>
+![uml]("https://user-images.githubusercontent.com/48936532/103358091-2fee7b80-4a8b-11eb-911c-98c4101093ec.jpg")
